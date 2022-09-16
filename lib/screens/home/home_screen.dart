@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/details/details_screen.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 class HomeScreen extends StatefulWidget {
   static const routeName = "/";
 
@@ -13,6 +15,19 @@ class _HomeScreenState extends State<HomeScreen> {
   List<String> listItems = [];
   String newTodo = "";
   final fieldText = TextEditingController();
+  
+  @override
+  void initState() {
+    init();
+  }
+
+  init() async {
+    const storage = FlutterSecureStorage();
+    Map<String, String> mapItems = await storage.readAll();
+    setState(() {
+      mapItems.forEach((k, v) => listItems.add(v));
+    });
+  }
 
   void _addItem(String text) {
     if (newTodo == "") {
@@ -23,6 +38,11 @@ class _HomeScreenState extends State<HomeScreen> {
         )
       );
     }
+
+    const storage = FlutterSecureStorage();
+    int id = listItems.length + 1;
+    storage.write(key: id.toString(), value: text);
+    
     setState(() {
       listItems.add(newTodo);
       newTodo = "";
@@ -40,6 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       listItems = [];
     });
+    const storage = FlutterSecureStorage();
+    storage.deleteAll();
   }
 
   @override
