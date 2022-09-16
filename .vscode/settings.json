@@ -1,0 +1,13 @@
+{
+  "dart.flutterSdkPath": "C:\\src\\flutter",
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 100,
+  "[markdown]": {
+      "editor.wordWrap": "wordWrapColumn",
+      "editor.quickSuggestions": {
+        "comments": "off",
+        "strings": "off",
+        "other": "off"
+      }
+  }
+}
