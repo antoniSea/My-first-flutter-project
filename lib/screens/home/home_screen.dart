@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:flutter_application_1/screens/details/details_screen.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -18,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   
   @override
   void initState() {
+    super.initState();
     init();
   }
 
